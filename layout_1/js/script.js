@@ -110,12 +110,6 @@ map.on('load', () => {
 map.on('load', () => {
     // Add a custom vector tileset source. This tileset contains
     // point features representing museums. Each feature contains
-    // three properties. For example:
-    // {
-    //     alt_name: "Museo Arqueologico",
-    //     name: "Museo Inka",
-    //     tourism: "museum"
-    // }
     map.addSource('Landmarks_and_places_of_inter-bf9pz0', {
         type: 'vector',
         url: 'mapbox://tszkinleung.38rkw66j'
@@ -129,15 +123,12 @@ map.on('load', () => {
             'visibility': 'visible'
         },
         'paint': {
-            'circle-radius': 8,
+            'circle-radius': 3,
             'circle-color': 'rgba(55,148,179,1)'
         },
         'source-layer': 'Landmarks_and_places_of_inter-bf9pz0'
     });
 
-    // Add the Mapbox Terrain v2 vector tileset. Read more about
-    // the structure of data in this tileset in the documentation:
-    // https://docs.mapbox.com/vector-tiles/reference/mapbox-terrain-v2/
     map.addSource('train_station', {
         type: 'vector',
         url: 'mapbox://tszkinleung.c9c5xkww'
@@ -151,7 +142,7 @@ map.on('load', () => {
             'visibility': 'visible'
         },
         'paint': {
-            'circle-radius': 8,
+            'circle-radius': 3,
             'circle-color': '#F59CA9'
         },
         'source-layer': 'transtation-317u4e'
