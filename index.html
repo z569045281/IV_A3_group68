@@ -5,25 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Landing Page</title>
+    <title>Melbourne Landing Page</title>
 </head>
 
 <body>
-    <header id="showcase">
-        <img src="sb.png" alt="">
-    </header>
-    <div id="content" class="container">
-        <h1>
-            Are You Over 18?
-        </h1>
-        We're playing around with animations in CSS. It's really good to know that you don't have to use JavaScript or
-        jQuery to animate and create interactions ALL of the time. Digging deeper into CSS.
+    <section class="showcase">
+        <header>
+            <h2 class="logo">Melbourne</h2>
+            <div class="toggle"></div>
+        </header>
+        <video src="resources/video1.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+            <h2>Never stop to </h2>
+            <h3>Exploring The Worl</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</p>
+            <a href="#">Explore</a>
+        </div>
+        <ul class="social">
+            <li><a href="#"><img src="https://i.ibb.co/x7P24fL/facebook.png"></a></li>
+            <li><a href="#"><img src="https://i.ibb.co/Wnxq2Nq/twitter.png"></a></li>
+            <li><a href="#"><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a></li>
+        </ul>
+    </section>
+    <div class="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Destination</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </div>
 
-    <a href="/layout_1/layout.html" class="btn">Page 1</a>
-    <a href="/layout_2/layout.html" class="btn">Page 2</a>
-    <a href="/layout_3/layout.html" class="btn">Page 3</a>
-
 </body>
+<script src="index.js"></script>
 
 </html>
