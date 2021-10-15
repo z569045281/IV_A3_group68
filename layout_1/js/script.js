@@ -6,7 +6,8 @@ const map = new mapboxgl.Map({
     zoom: 11.5, // Specify the starting zoom
 });
 const params = document.getElementById('params');
-
+var arrPo;
+var arrCovered;
 // Create variables to use in getIso()
 const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
 const lon = 144.946014;
@@ -16,11 +17,19 @@ let minutes = 20;
 
 // Set up a marker that you can use to show the query's coordinates
 const marker = new mapboxgl.Marker({
-    'color': '#314ccd'
+    'color': '#314ccd',
+    draggable: true
 });
 
+function onDragEnd() {
+    const lngLat = marker.getLngLat();
+    arrPo = Object.values(lngLat);
+    getIso(arrPo[0], arrPo[1]);
+}
+
+marker.on('dragend', onDragEnd);
+
 // Create a LngLat object to use in the marker initialization
-// https://docs.mapbox.com/mapbox-gl-js/api/#lnglat
 const lngLat = {
     lon: lon,
     lat: lat
@@ -35,12 +44,10 @@ async function getIso(lon, lat) {
     const data = await query.json();
     // Set the 'iso' source's data to what's returned by the API query
     map.getSource('iso').setData(data);
-    // console.log(data);
-    var arrCovered = Object.values(data);
-    // console.log(Object.values(Object.values(arrCovered[0][0])[1])[0][0]);
-    arrCovered = Object.values(Object.values(arrCovered[0][0])[1])[0][0];
+    arrCovered = Object.values(data);
+    arrCovered = Object.values(Object.values(Object.values(arrCovered[0][0])[1])[0][0]);
     // get the coordinates of the covered area
-    console.log(arrCovered);
+    highlight();
 }
 
 // When a user changes the value of profile or duration by clicking a button, change the parameter's value and make the API query again
@@ -52,6 +59,7 @@ params.addEventListener('change', ({ target }) => {
     }
     getIso(lon, lat);
 });
+map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', () => {
     // When the map loads, add the source and layer
@@ -63,6 +71,7 @@ map.on('load', () => {
         }
     });
 
+
     map.addLayer(
         {
             'id': 'isoLayer',
@@ -71,7 +80,7 @@ map.on('load', () => {
             'layout': {},
             'paint': {
                 'fill-color': '#5a3fc0',
-                'fill-opacity': 0.3
+                'fill-opacity': 0.35
             }
         },
         'poi-label'
@@ -110,53 +119,120 @@ map.on('load', () => {
 map.on('load', () => {
     // Add a custom vector tileset source. This tileset contains
     // point features representing museums. Each feature contains
-    map.addSource('Landmarks_and_places_of_inter-bf9pz0', {
-        type: 'vector',
-        url: 'mapbox://tszkinleung.38rkw66j'
-    });
-    map.addLayer({
-        'id': 'LandMark',
-        'type': 'circle',
-        'source': 'Landmarks_and_places_of_inter-bf9pz0',
-        'layout': {
-            // Make the layer visible by default.
-            'visibility': 'visible'
-        },
-        'paint': {
-            'circle-radius': 3,
-            'circle-color': 'rgba(55,148,179,1)'
-        },
-        'source-layer': 'Landmarks_and_places_of_inter-bf9pz0'
-    });
 
-    map.addSource('train_station', {
-        type: 'vector',
-        url: 'mapbox://tszkinleung.c9c5xkww'
-    });
-    map.addLayer({
-        'id': 'TrainStation',
-        'type': 'circle',
-        'source': 'train_station',
-        'layout': {
-            // Make the layer visible by default.
-            'visibility': 'visible'
-        },
-        'paint': {
-            'circle-radius': 3,
-            'circle-color': '#F59CA9'
-        },
-        'source-layer': 'transtation-317u4e'
-    });
+    map.loadImage(
+        './asset/health.png',
+        (error, image) => {
+            if (error) throw error;
+
+            map.addImage('health', image);
+            // map.addImage('church', image);
+
+            map.addSource('Health-Services', {
+                type: 'vector',
+                url: 'mapbox://tszkinleung.3g34wo1f'
+            });
+            map.addLayer({
+                'id': 'HealthServices',
+                'type': 'symbol',
+                'source': 'Health-Services',
+                'layout': {
+                    // Make the layer visible by default.
+                    'visibility': 'visible',
+                    'icon-image': 'health', // reference the image
+                    'icon-size': 0.35
+                },
+                'source-layer': '1-apw7i4'
+            });
+        });
+    map.loadImage(
+        './asset/fun.png',
+        (error, image) => {
+            if (error) throw error;
+
+            map.addImage('fun', image);
+            // map.addImage('church', image);
+
+            map.addSource('Fun', {
+                type: 'vector',
+                url: 'mapbox://tszkinleung.dk24mxp5'
+            });
+            map.addLayer({
+                'id': 'AssemblyPlaces',
+                'type': 'symbol',
+                'source': 'Fun',
+                'layout': {
+                    // Make the layer visible by default.
+                    'visibility': 'visible',
+                    'icon-image': 'fun', // reference the image
+                    'icon-size': 0.35
+                },
+
+                'source-layer': '1-028i90'
+            });
+        });
+    map.loadImage(
+        './asset/church.png',
+        (error, image) => {
+            if (error) throw error;
+
+            map.addImage('church', image);
+            // map.addImage('church', image);
+
+            map.addSource('Church', {
+                type: 'vector',
+                url: 'mapbox://tszkinleung.4ndgc51c'
+            });
+            map.addLayer({
+                'id': 'Church',
+                'type': 'symbol',
+                'source': 'Church',
+                'layout': {
+                    // Make the layer visible by default.
+                    'visibility': 'visible',
+                    'icon-image': 'church', // reference the image
+                    'icon-size': 0.35
+                },
+
+                'source-layer': '1-6y7src'
+            });
+        });
+    map.loadImage(
+        './asset/train.png',
+        (error, image) => {
+            if (error) throw error;
+
+            map.addImage('train', image);
+            // map.addImage('church', image);
+
+            map.addSource('train_station', {
+                type: 'vector',
+                url: 'mapbox://tszkinleung.c9c5xkww'
+            });
+            map.addLayer({
+                'id': 'TrainStation',
+                'type': 'symbol',
+                'source': 'train_station',
+                'layout': {
+                    // Make the layer visible by default.
+                    'visibility': 'none',
+                    'icon-image': 'train', // reference the image
+                    'icon-size': 0.35
+                },
+                'source-layer': 'transtation-317u4e'
+            });
+        });
+
 });
-
 map.on('idle', () => {
     // If these two layers were not added to the map, abort
-    if (!map.getLayer('LandMark') || !map.getLayer('TrainStation')) {
+    if (!map.getLayer('HealthServices') || !map.getLayer('AssemblyPlaces') || !map.getLayer('Church') || !map.getLayer('TrainStation')) {
         return;
     }
 
     // Enumerate ids of the layers.
-    const toggleableLayerIds = ['LandMark', 'TrainStation'];
+    const toggleableLayerIds = ['HealthServices',
+        'AssemblyPlaces', 'Church', 'TrainStation'];
 
     // Set up the corresponding toggle button for each layer.
     for (const id of toggleableLayerIds) {
@@ -170,7 +246,7 @@ map.on('idle', () => {
         link.id = id;
         link.href = '#';
         link.textContent = id;
-        link.className = 'active';
+        link.className = 'active ';
 
         // Show or hide layer when the toggle is clicked.
         link.onclick = function (e) {
@@ -201,3 +277,24 @@ map.on('idle', () => {
         layers.appendChild(link);
     }
 });
+
+var coordinates;
+function highlight() {
+    // turf point within area
+    let result = placeOfInterest.map(({ coordinates }) => coordinates);
+    result = Object.values(result);
+    for (let index = 0; index < placeOfInterest.length; index++) {
+        var points = turf.points([
+            result[index]
+        ]);
+
+        var searchWithin = turf.polygon([
+            arrCovered
+        ]);
+        var ptsWithin = turf.pointsWithinPolygon(points, searchWithin);
+        console.log(ptsWithin);
+        console.log(placeOfInterest[index]);
+    }
+
+};
+
