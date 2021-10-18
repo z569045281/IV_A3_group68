@@ -94,10 +94,10 @@ header .logo {
   color: #fff;
   line-height: 1em;
   text-transform: uppercase;
-  margin-top: 5%;
-  background: linear-gradient(270deg,#f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+  margin-top: 10%;
+  background: linear-gradient(300deg, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .text h3 {
@@ -106,15 +106,15 @@ header .logo {
   color: #fff;
   line-height: 1em;
   text-transform: uppercase;
-  margin-bottom: 1%;
-  background: linear-gradient(270deg, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+  margin-bottom: 25%;
+  background: linear-gradient(300deg, #f06844 0%, #ee4c54 25%, #d45e95 50%, #9c6ca6 75%, #6583c1 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .text p {
   font-weight: 800;
-  font-size: 1.5em;
+  font-size: 1.0em;
   color: #fff;
   margin: 20px 0;
   font-weight: 500;
@@ -159,7 +159,7 @@ header .logo {
   transform: scale(1.2) translateY(-15px);
 }
 
-.social li {
+/* .social li {
   list-style: none;
 }
 
@@ -173,7 +173,7 @@ header .logo {
 
 .social li a:hover {
   transform: scale(0.5) translateY(-15px);
-}
+} */
 
 .menu {
   position: absolute;
