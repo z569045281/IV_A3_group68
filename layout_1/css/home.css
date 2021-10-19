@@ -1,86 +1,4 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Nav Bar container CSS */
-
-.nav-bar-container {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    width: 90%;
-    margin: auto;
-    font-family: 'Roboto', sans-serif;
-}
-
-.header {
-    position: relative;
-    font-weight: bolder;
-    font-size: x-large;
-    justify-self: start;
-    top: 50%;
-    font-size: 22pt;
-    /* margin: auto; */
-}
-
-.navigation-btn {
-    position: relative;
-    top: 50%;
-    font-family: 'Roboto', sans-serif;
-}
-
-.navbar {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    float: right;
-}
-
-/* Presents navbar items in a row without list style (no bullets) */
-
-.navbar-list {
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-}
-
-/* Gives space between navbar items */
-
-.navbar-item {
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-/* Removes text decoration from navbar text */
-
-.navbar-link {
-    text-decoration: none;
-    color: black;
-    font-size: 16pt;
-}
-
-/* Allows font to change on hover */
-
-.navbar-link:hover {
-    text-decoration: underline;
-    color: #d55e2d;
-}
-
-/* Hides hamburger */
-
-.button {
-    display: none;
-}
-
 /* Map-container Css */
-
-.map-container {
-    top: 30px;
-    position: relative;
-    width: 90%;
-    margin: auto;
-}
 
 #map {
     position: absolute;
@@ -91,26 +9,16 @@ body {
     padding-left: 20px;
     border-radius: 10px;
     overflow-x: hidden;
-    /* menu Css */
 }
 
-#menu {
-    
-    /* position: absolute;
-    z-index: 1000; */
-    /* top: 10px;
-    right: 10px; */
-    display:flex;
-    justify-content: space-between;
-    /* border-radius: 3px; */
-    /* height: 100px; */
-    /* width: 120px; */
-    /* border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 10px; */
-    /* font-family: 'Open Sans', sans-serif; */
+#map-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    flex-wrap: wrap;
 }
 
-#menu a {
+#map-menu a {
     font-size: 13px;
     color: #9e9b9b;
     display: block;
@@ -119,24 +27,48 @@ body {
     text-decoration: none;
     font-weight: bold;
     border-radius: 18px;
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.25); */
     text-align: center;
 }
 
-#menu a:last-child {
+#map-menu a:last-child {
     border: none;
 }
 
-/* #menu a:hover {
-    background: #448ee4;
-    color: #fff;
-} */
-
-#menu a.active {
-    /* background-color:; */
+#map-menu a.active {
     background: #448EE4;
     color: rgb(255, 255, 255);
 }
 
+.map-legend {
+    position: absolute;
+    bottom: 120px;
+    left: 20px;
+    height: auto;
+    width: auto;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
 
+.map-legend li {
+    padding-top: 5px;
+}
 
+.marker_church {
+    background-image: url('../asset/church.png');
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    width: auto;
+    height: auto;
+}
+
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}

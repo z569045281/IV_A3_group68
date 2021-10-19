@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/default.css">
 
 
     <!-- Import Mapbox GL JS  -->
@@ -18,82 +19,102 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- turf.js -->
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 
     <title>Assignment 3</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="nav-bar-container">
-            <div class="header">
-                <h1>Website Title</h1>
-            </div>
-            <div class="navigation-btn">
-                <nav class="navbar" role="navigation" aria-label="navigation">
-                    <ul class="navbar-list" role="list" aria-label="navigation items">
-                        <li class="navbar-item" aria-label="home">
-                            <a href="../index.html" class="navbar-link" aria-label="home link">HOME</a>
-                        </li>
-                        <li class="navbar-item" aria-label="PAGE1">
-                            <a href="../layout_1/layout.html" class="navbar-link" aria-label="page1 link">PAGE1</a>
-                        </li>
-                        <li class="navbar-item" aria-label="PAGE2">
-                            <a href="../layout_2/layout.html" class="navbar-link" aria-label="page2 link">PAGE2</a>
-                        </li>
-                        <li class="navbar-item" aria-label="CONTACT">
-                            <a href="../layout_3/layout.html" class="navbar-link" aria-label="page3 link">PAGE3</a>
-                        </li>
+    <div class="menu">
+        <ul class="menu-list">
+            <li><a href="/index.html"> Home</a></li>
+            <li><a onclick="window.open('/layout_1/layout.html')">Layout1</a></li>
+            <li><a onclick="window.open('/layout_2/layout.html')">layout2</a></li>
+            <li><a onclick="window.open('/layout_3/layout.html')">layout3</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- <div class="overlay"></div> -->
+        <header>
+            <h2 class="logo">Melbourne</h2>
+            <div class="menu-toggle"></div>
+        </header>
+        <div class="container">
+
+            <div class="map-containers">
+                <div id="map">
+
+                </div>
+                <div class="map-legend">
+                    <ul >
+                        <li><i class="material-icons" style="font-size: 16px;">church</i></i>   Church</li>
+                        <li><i class="material-icons" style="font-size: 16px;">theater_comedy</i></i>   Theater and Places of Assembly</li>
+                        <li><i class="material-icons" style="font-size: 16px;">health_and_safety</i></i>   Health and Safety</li>
+
                     </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="map-container">
-            <div id="map">
+                </div>
+                <div class='map-toggle'>
+                    <div class=' fl my24 mx24 py24 px24 bg-gray-faint round'>
+                        <form id='params'>
+                            <h4 class='txt-m txt-bold mb6'>Choose a travel mode:</h4>
+                            <div class='mb12 mr12 toggle-group align-center'>
+                                <label class='toggle-container'>
+                                    <input name='profile' type='radio' value='walking'>
+                                    <div class='toggle toggle--active-null toggle--null'>Walking</div>
+                                </label>
+                                <label class='toggle-container'>
+                                    <input name='profile' type='radio' value='cycling' checked>
+                                    <div class='toggle toggle--active-null toggle--null'>Cycling</div>
+                                </label>
+                                <label class='toggle-container'>
+                                    <input name='profile' type='radio' value='driving'>
+                                    <div class='toggle toggle--active-null toggle--null'>Driving</div>
+                                </label>
+                            </div>
+                            <h4 class='txt-m txt-bold mb6'>Choose a maximum duration:</h4>
+                            <div class='mb12 mr12 toggle-group align-center'>
+                                <label class='toggle-container'>
+                                    <input name='duration' type='radio' value='10' checked>
+                                    <div class='toggle toggle--active-null toggle--null'>10 min</div>
+                                </label>
+                                <label class='toggle-container'>
+                                    <input name='duration' type='radio' value='20'>
+                                    <div class='toggle toggle--active-null toggle--null'>20 min</div>
+                                </label>
+                                <label class='toggle-container'>
+                                    <input name='duration' type='radio' value='30'>
+                                    <div class='toggle toggle--active-null toggle--null'>30 min</div>
+                                </label>
+                            </div>
+                            <div class="toggle-2">
+                                <h4 class='txt-m txt-bold mb6'>Choose a the element to display:</h4>
+                                <nav id="map-menu"></nav>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
             </div>
-            <div class='map-toggle'>
-                <div class='absolute fl my24 mx24 py24 px24 bg-gray-faint round'>
-                    <form id='params'>
-                        <h4 class='txt-m txt-bold mb6'>Choose a travel mode:</h4>
-                        <div class='mb12 mr12 toggle-group align-center'>
-                            <label class='toggle-container'>
-                                <input name='profile' type='radio' value='walking'>
-                                <div class='toggle toggle--active-null toggle--null'>Walking</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='profile' type='radio' value='cycling' checked>
-                                <div class='toggle toggle--active-null toggle--null'>Cycling</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='profile' type='radio' value='driving'>
-                                <div class='toggle toggle--active-null toggle--null'>Driving</div>
-                            </label>
-                        </div>
-                        <h4 class='txt-m txt-bold mb6'>Choose a maximum duration:</h4>
-                        <div class='mb12 mr12 toggle-group align-center'>
-                            <label class='toggle-container'>
-                                <input name='duration' type='radio' value='10' checked>
-                                <div class='toggle toggle--active-null toggle--null'>10 min</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='duration' type='radio' value='20'>
-                                <div class='toggle toggle--active-null toggle--null'>20 min</div>
-                            </label>
-                            <label class='toggle-container'>
-                                <input name='duration' type='radio' value='30'>
-                                <div class='toggle toggle--active-null toggle--null'>30 min</div>
-                            </label>
-                        </div>
-                        <div class="toggle-2">
-                            <h4 class='txt-m txt-bold mb6'>Choose a the element to display:</h4>
-                            <nav id="menu"></nav>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+
+
+            <ul class="social">
+                <h3>Present By Group 68</h3>
+            </ul>
         </div>
+
+    </div>
+
+
+
+
+
+
 </body>
 <script src="./js/placeOfInterest.js"></script>
 <script src="./js/script.js"></script>
+<script src="./js/default.js"></script>
+
 </html>

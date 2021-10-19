@@ -13,7 +13,7 @@ const urlBase = 'https://api.mapbox.com/isochrone/v1/mapbox/';
 const lon = 144.946014;
 const lat = -37.840935;
 let profile = 'cycling';
-let minutes = 20;
+let minutes = 10;
 
 // Set up a marker that you can use to show the query's coordinates
 const marker = new mapboxgl.Marker({
@@ -47,7 +47,8 @@ async function getIso(lon, lat) {
     arrCovered = Object.values(data);
     arrCovered = Object.values(Object.values(Object.values(arrCovered[0][0])[1])[0][0]);
     // get the coordinates of the covered area
-    highlight();
+    const feature = map.queryRenderedFeatures({ layers: ['AssemblyPlaces', 'HealthServices', 'Church'] });
+    highlight(feature);
 }
 
 // When a user changes the value of profile or duration by clicking a button, change the parameter's value and make the API query again
@@ -59,8 +60,20 @@ params.addEventListener('change', ({ target }) => {
     }
     getIso(lon, lat);
 });
+// map control
 map.addControl(new mapboxgl.NavigationControl());
+// get user location
+var geolocate = new mapboxgl.GeolocateControl();
 
+map.addControl(geolocate);
+
+geolocate.on('geolocate', function (e) {
+    var lon = e.coords.longitude;
+    var lat = e.coords.latitude
+    var position = [lon, lat];
+    marker.setLngLat(position).addTo(map);
+    getIso(lon, lat);
+});
 map.on('load', () => {
     // When the map loads, add the source and layer
     map.addSource('iso', {
@@ -93,7 +106,7 @@ map.on('load', () => {
 
     // Make the API call
     getIso(lon, lat);
-
+    // Query all rendered features from a single layer
     //   onclick API call
     map.on('click', (e) => {
         var arrPo = Object.values(e.lngLat);
@@ -102,8 +115,10 @@ map.on('load', () => {
             lon: arrPo[0],
             lat: arrPo[1]
         };
-        marker.setLngLat(lngLat).addTo(map);
 
+        map.flyTo({ center: lngLat, zoom: 16 });
+
+        marker.setLngLat(lngLat).addTo(map);
         params.addEventListener('change', ({ target }) => {
             if (target.name === 'profile') {
                 profile = target.value;
@@ -112,6 +127,7 @@ map.on('load', () => {
             }
             getIso(arrPo[0], arrPo[1]);
         });
+
     });
 
 });
@@ -146,7 +162,7 @@ map.on('load', () => {
             });
         });
     map.loadImage(
-        './asset/fun.png',
+        './asset/church.png',
         (error, image) => {
             if (error) throw error;
 
@@ -172,7 +188,7 @@ map.on('load', () => {
             });
         });
     map.loadImage(
-        './asset/church.png',
+        './asset/fun.png',
         (error, image) => {
             if (error) throw error;
 
@@ -197,42 +213,17 @@ map.on('load', () => {
                 'source-layer': '1-6y7src'
             });
         });
-    map.loadImage(
-        './asset/train.png',
-        (error, image) => {
-            if (error) throw error;
-
-            map.addImage('train', image);
-            // map.addImage('church', image);
-
-            map.addSource('train_station', {
-                type: 'vector',
-                url: 'mapbox://tszkinleung.c9c5xkww'
-            });
-            map.addLayer({
-                'id': 'TrainStation',
-                'type': 'symbol',
-                'source': 'train_station',
-                'layout': {
-                    // Make the layer visible by default.
-                    'visibility': 'none',
-                    'icon-image': 'train', // reference the image
-                    'icon-size': 0.35
-                },
-                'source-layer': 'transtation-317u4e'
-            });
-        });
 
 });
 map.on('idle', () => {
     // If these two layers were not added to the map, abort
-    if (!map.getLayer('HealthServices') || !map.getLayer('AssemblyPlaces') || !map.getLayer('Church') || !map.getLayer('TrainStation')) {
+    if (!map.getLayer('HealthServices') || !map.getLayer('AssemblyPlaces') || !map.getLayer('Church')) {
         return;
     }
 
     // Enumerate ids of the layers.
     const toggleableLayerIds = ['HealthServices',
-        'AssemblyPlaces', 'Church', 'TrainStation'];
+        'AssemblyPlaces', 'Church'];
 
     // Set up the corresponding toggle button for each layer.
     for (const id of toggleableLayerIds) {
@@ -273,27 +264,46 @@ map.on('idle', () => {
             }
         };
 
-        const layers = document.getElementById('menu');
+        const layers = document.getElementById('map-menu');
         layers.appendChild(link);
     }
 });
 
 var coordinates;
-function highlight() {
-    // turf point within area
-    let result = placeOfInterest.map(({ coordinates }) => coordinates);
-    result = Object.values(result);
+function highlight(feature) {
+    var zoom = map.getZoom();
+    console.log(zoom);
+
     for (let index = 0; index < placeOfInterest.length; index++) {
+        var result = [feature[index].properties.longitude,feature[index].properties.latitude]
         var points = turf.points([
-            result[index]
+            result
         ]);
 
         var searchWithin = turf.polygon([
             arrCovered
         ]);
         var ptsWithin = turf.pointsWithinPolygon(points, searchWithin);
-        console.log(ptsWithin);
-        console.log(placeOfInterest[index]);
+        // show only the within dots
+        if (ptsWithin.features[0] != undefined) {
+            // console.log(ptsWithin.features[0]);
+            // console.log(placeOfInterest[index]);
+            const el = document.createElement('div');
+            // console.log(ptsWithin.features[0].geometry.coordinates[0]);
+            el.className = 'marker-church';
+            var position = [ptsWithin.features[0].geometry.coordinates[0], ptsWithin.features[0].geometry.coordinates[1]];
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+                .setLngLat(position)
+                .setPopup(
+                    new mapboxgl.Popup({ closeOnClick: true, closeButton: false }) // add popups
+                        .setHTML(
+                            `<h3>${placeOfInterest[index].FeatureName}</h3><p>${placeOfInterest[index]["Sub Theme"]}</p>`
+                        )
+                )
+                .addTo(map)
+                .togglePopup();
+        }
     }
 
 };
