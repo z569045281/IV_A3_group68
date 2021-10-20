@@ -174,7 +174,7 @@ map.on('load', () => {
                 url: 'mapbox://tszkinleung.dk24mxp5'
             });
             map.addLayer({
-                'id': 'AssemblyPlaces',
+                'id': 'Church',
                 'type': 'symbol',
                 'source': 'Fun',
                 'layout': {
@@ -200,7 +200,7 @@ map.on('load', () => {
                 url: 'mapbox://tszkinleung.4ndgc51c'
             });
             map.addLayer({
-                'id': 'Church',
+                'id': 'AssemblyPlaces',
                 'type': 'symbol',
                 'source': 'Church',
                 'layout': {
