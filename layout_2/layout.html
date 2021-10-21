@@ -1,21 +1,365 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="layout.css">
-    <title>Document</title>
+    <title>TravelInfo</title>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+       
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet" />
+
+       
+    <!-- Import Mapbox GL Directions -->
+       
+    <script        
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+       
+    <link rel="stylesheet"        
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css"        
+        type="text/css" />
+    <link rel="stylesheet" href="home.css">
 </head>
+
 <body>
+    <section class="showcase">
+        <header>
+            <h2 class="logo">Melbourne</h2>
+            <div class="toggle"></div>
+        </header>
+        <div class="overlay"></div>
+        <ul class="social">
+            <h3>Present By Group 68</h3>
+        </ul>
+        <div class="layer-content">
+            <div class="banner-container">
+                <h3>Useful Travel Information</h3>
+            </div>
+            <hr class="page-break">
+            <div class="text-container">
+                <div class="colum-left">
+                    <h2>myki cards</h2>
+                    <h3 class="description">myki is Melbourne's ticket to travel on the city's trains, trams and buses.
+                        It's a plastic smartcard with stored value which can be topped up and re-used again.
+                        Purchase your myki online at the PTV website, premium train stations, retail outlets
+                        displaying the myki sign (including 7-Elevens), or by calling 1800 800 007 (free from a land
+                        line) in Australia.</h3>
+                    <h2>myki Explorer</h2>
+                    <h3 class="description">For flexible travel, buy a myki Explorer pack from SkyBus ticket booths at
+                        Melbourne Airport and Southern Cross Station,
+                        the PTV Hub at Southern Cross Station (corner Swanston and Little Collins streets),
+                        and some hotels. Packs include a pre-loaded myki card with enough value for one day of travel in
+                        Zone 1 and 2,
+                        instructions on how to use myki, maps for trains, trams and the city centre,
+                        and discounted entry to attractions in Melbourne and regional Victoria.</h3>
+                    <h2>Fare types</h2>
+                    <h3 class="description">Outside of the Free Tram Zone, Melbourne has two transit zones (1 and 2),
+                        with a single price to travel across both. It is cheaper to travel in Zone 2 only.
+                        Train travel completed before 7.00am on a weekday is free. </h3>
+                </div>
+                <div class="column-right">
+                    <h2>Trains</h2>
+                    <h3 class="description">Melbourne's metro trains run between the outer suburbs and Flinders Street
+                        Station in the city.
+                        The city loop is Melbourne's underground system, with five stations in the central business
+                        district:
+                        Southern Cross Station, Flagstaff, Melbourne Central, Parliament and Flinders Street.
+                        Southern Cross Station is Melbourne's hub for regional and interstate trains.
+                        Plan your trip with Public Transport Victoria's journey planner.</h3>
+                    <h2>Trams</h2>
+                    <h3 class="description">Passengers can board trams at signposted stops displaying maps, route
+                        numbers and a timetable.
+                        Route numbers are also displayed on the front of the tram. Travel within the central area of
+                        Melbourne by tram is free,
+                        though you will need a myki card if you plan to start or finish your journey outside this
+                        central area.
+                        For information on the area covered by the Free Tram Zone and a downloadable map, go to the
+                        Public Transport Victoria website.</h3>
+                    <h2>Buses</h2>
+                    <h3 class="description">Melbourne buses run frequently to major hubs, including shopping centres,
+                        schools, hospitals,
+                        leisure and sports venues, and some of Melbourne's biggest attractions. For people travelling
+                        further afield,
+                        Victoria's V/Line service gives access to regional towns and scenic attractions across the
+                        state.</h3>
+                </div>
+            </div>
+            <hr class="page-break">
 
+            <div class="map-container">
 
+                <h2>Melbourne WiFi hotspots</h2>
+                 <div id="map" style="height:400px"></div> <!--change teh height of the mapbox -->
+                 <div class="map-overlay" id="title">
+                    <div id="info">
+                        <strong>Melbourne WiFi hotspots</strong>
+                      <p><img src="./asset/tower.jpg" style="width: 8%; height: 8%;" alt="">Select 'VicFreeWiFi' service. </p>
+                      <p> The service requires no login, </p><p>passwords or other personal data, </p><p>and is ad-free.</p>
+                    </div>
+            </div>
+        </div>
 
-    <div class="section-2">
-        <h3>section 2</h3>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <li><a href="/index.html"> Home</a></li>
+            <li><a onclick="window.open('/layout_1/layout.html')">Layout1</a></li>
+            <li><a onclick="window.open('/layout_2/layout.html')">layout2</a></li>
+            <li><a onclick="window.open('/layout_3/layout.html')">layout3</a></li>
+        </ul>
     </div>
-
-
-
-    
 </body>
+<script src="script.js"></script>
+<script>
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoicWlvYSIsImEiOiJja2M2Mzd6ZmIwM2szMnNuc3ZpMG15enRqIn0.RjH2uB1fV_183b1NNLgyqw';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [144.96, -37.80],
+        zoom: 12
+    });
+
+    map.on('load', () => {
+        map.addSource('places', {
+            // This GeoJSON contains features that include an "icon"
+            // property. The value of the "icon" property corresponds
+            // to an image in the Mapbox Streets style's sprite.
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+
+
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Melbourne Central station</strong> <p>	Address: La Trobe Street, Melbourne, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.96, -37.81]
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Flinders Street Railway Station</strong> <p>Address: Flinders St, Melbourne VIC 3000, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.967, -37.818]
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Parliament Station</strong> <p>Address: Spring St, East Melbourne VIC 3000, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.9729, -37.8100]//-37.81001914378394, 144.97293062520265
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>North Melbourne railway station</strong> <p>Address: West Melbourne VIC 3003, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.9414, -37.8060]//-37.8060072376867, 144.94140180335492
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Clifton Hill Station</strong> <p>Address: Clifton Hill VIC 3068, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.9955, -37.7877]//-37.78770820389432, 144.99551958919227
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Glen Iris Station</strong> <p>Address: Glen Iris VIC 3146, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [145.0582, -37.8588]//-37.85882438775463, 145.05829174384456
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Jolimont railway station</strong> <p>Address: Wellington Cres, East Melbourne VIC 3002, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.9840, -37.8162]//-37.81628473515496, 144.98406524014786
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Southern Cross station</strong> <p>Address: Spencer St, Docklands VIC 3008, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.95231, -37.81794]//-37.81794886117338, 144.95231002690804
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Bourke St Mall</strong> <p>Address: between Swanston Street and Elizabeth Street VIC 3008, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.96450, -37.81361]//-37.813613279518954, 144.96450229781848
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Queen Victoria Market</strong> <p>Address: Queen St, Melbourne VIC 3000, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.95675, -37.80740]//-37.80740177139755, 144.9567528113123
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Melbourne Museum</strong> <p>Address: 11 Nicholson St, Carlton VIC 3053, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.97175, -37.80299]//-37.8029932358885, 144.9717515266537
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>NGV International</strong> <p>Address: 180 St Kilda Rd, Melbourne VIC 3006, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.96894, -37.82245]//-37.82245010706657, 144.96894925548955
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>City Library</strong> <p>Address: 253 Flinders Ln, Melbourne VIC 3000, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.96523, -37.81490]//--37.814904270179575, 144.9652305598229
+                        }
+
+                    },
+                    {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>State Library Victoria</strong> <p>Address: 328 Swanston St, Melbourne VIC 3000, Australia.</p>',
+                            'icon': 'communications-tower-15'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [144.96525, -37.80956]//-37.809562866035115, 144.96525407083078
+                        }
+
+                    },
+                ]
+            }
+        });
+        // Add a layer showing the places.
+        map.addLayer({
+            'id': 'places',
+            'type': 'symbol',
+            'source': 'places',
+            'layout': {
+                'icon-image': '{icon}',
+                'icon-allow-overlap': true,
+                'icon-size':1.5
+            }
+        });
+
+        // When a click event occurs on a feature in the places layer, open a popup at the
+        // location of the feature, with description HTML from its properties.
+        map.on('click', 'places', (e) => {
+            // Copy coordinates array.
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const description = e.features[0].properties.description;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'places', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'places', () => {
+            map.getCanvas().style.cursor = '';
+        });
+    });
+
+</script>
+
 </html>
