@@ -90,7 +90,7 @@ header .logo {
 .text h2 {
     font-size: 5em;
     font-weight: 800;
-    color: rgb(10, 10, 10);
+    color: rgb(0, 0, 0);
     line-height: 1em;
     text-transform: uppercase;
     margin-top: 5%;
@@ -228,7 +228,7 @@ header .logo {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 

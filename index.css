@@ -159,22 +159,6 @@ header .logo {
   transform: scale(1.2) translateY(-15px);
 }
 
-/* .social li {
-  list-style: none;
-}
-
-.social li a {
-  display: inline-block;
-  margin-right: 20px;
-  filter: invert(1);
-  transform: scale(0.5);
-  transition: 0.5s;
-}
-
-.social li a:hover {
-  transform: scale(0.5) translateY(-15px);
-} */
-
 .menu {
   position: absolute;
   top: 0;
