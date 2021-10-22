@@ -1,0 +1,155 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+    "properties": {
+      "x_coordinate": "144.9591271",
+      "seating_type": "Seats - Indoor",
+      "industry_anzsic4_description": "Cafes and Restaurants",
+      "property_id": "101061",
+      "industry_anzsic4_code": "4511",
+      "number_of_seats": "90",
+      "census_year": "2019",
+      "y_coordinate": "-37.80287781",
+      "block_id": "259",
+      "street_address": "106-114 Berkeley Street CARLTON 3053",
+      "clue_small_area": "Carlton",
+      "base_property_id": "101061",
+      "trading_name": "Seven Seeds"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        144.9591271,
+        -37.80287781
+          ]
+        }
+      },
+    {
+        "type": "Feature",
+        "properties": {
+          "x_coordinate": "144.96920826978055",
+          "seating_type": "Seats - Outdoor",
+          "industry_anzsic4_description": "Cafes and Restaurants",
+          "property_id": "101061",
+          "industry_anzsic4_code": "4511",
+          "number_of_seats": "10",
+          "census_year": "2019",
+          "y_coordinate": "-37.81536976626433",
+          "block_id": "259",
+          "street_address": "16/161 Collins Street, Russell Street, Melbourne VIC 3000",
+          "clue_small_area": "Carlton",
+          "base_property_id": "101061",
+          "trading_name": "Lune Croissanterie CBD"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96920826978055,
+            -37.81536976626433
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "x_coordinate": "144.97998246025668",
+      "seating_type": "Seats - Outdoor",
+      "industry_anzsic4_description": "Cafes and Restaurants",
+      "property_id": "101061",
+      "industry_anzsic4_code": "4511",
+      "number_of_seats": "10",
+      "census_year": "2019",
+      "y_coordinate": "-37.79513857934004",
+      "block_id": "259",
+      "street_address": "119 Rose St, Fitzroy VIC 3065",
+      "clue_small_area": "Fitzroy",
+      "base_property_id": "101061",
+      "trading_name": "Lune Croissanterie Fitzroy "
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        144.97998246025668,
+        -37.79513857934004
+  ]
+}
+},
+{
+    "type": "Feature",
+    "properties": {
+      "x_coordinate": "144.9560032",
+      "seating_type": "Seats - Indoor",
+      "industry_anzsic4_description": "Cafes and Restaurants",
+      "property_id": "105726",
+      "industry_anzsic4_code": "4511",
+      "number_of_seats": "90",
+      "census_year": "2019",
+      "y_coordinate": "-37.81345114",
+      "block_id": "72",
+      "street_address": "550 Lonsdale Street MELBOURNE 3000",
+      "clue_small_area": "Melbourne (CBD)",
+      "base_property_id": "110707",
+      "trading_name": "Jang Gun Restuarant"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        144.9560032,
+        -37.81345114
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "x_coordinate": "144.9703999",
+      "seating_type": "Seats - Indoor",
+      "industry_anzsic4_description": "Cafes and Restaurants",
+      "property_id": "103926",
+      "industry_anzsic4_code": "4511",
+      "number_of_seats": "100",
+      "census_year": "2019",
+      "y_coordinate": "-37.81568917",
+      "block_id": "17",
+      "street_address": "125-127 Flinders Lane MELBOURNE 3000",
+      "clue_small_area": "Melbourne (CBD)",
+      "base_property_id": "103926",
+      "trading_name": "Chin Chin Restaurant"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        144.9703999,
+        -37.81568917
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "x_coordinate": "144.9739482",
+      "seating_type": "Seats - Indoor",
+      "industry_anzsic4_description": "Cafes and Restaurants",
+      "property_id": "108978",
+      "industry_anzsic4_code": "4511",
+      "number_of_seats": "85",
+      "census_year": "2019",
+      "y_coordinate": "-37.81419757",
+      "block_id": "28",
+      "street_address": "35-47 Spring Street MELBOURNE 3000",
+      "clue_small_area": "Melbourne (CBD)",
+      "base_property_id": "108978",
+      "trading_name": "Di Stasio Citta"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        144.9739482,
+        -37.81419757
+      ]
+    }
+  }
+]
+}
