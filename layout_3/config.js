@@ -173,7 +173,7 @@ var config = {
         {
             id: 'luna',
             alignment: 'right',
-            hidden: false,
+            hidden: true,
             title: 'Luna',
             image: 'https://travelintwos.com/wp-content/uploads/2019/08/photo0jpg.jpg',
             description: 'Copy these sections to add to your story.',
