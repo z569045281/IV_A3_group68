@@ -162,7 +162,7 @@ map.on('load', () => {
             });
         });
     map.loadImage(
-        './asset/church.png',
+        './asset/fun.png',
         (error, image) => {
             if (error) throw error;
 
@@ -188,7 +188,7 @@ map.on('load', () => {
             });
         });
     map.loadImage(
-        './asset/fun.png',
+        './asset/church.png',
         (error, image) => {
             if (error) throw error;
 
@@ -273,8 +273,9 @@ var coordinates;
 function highlight(feature) {
     var zoom = map.getZoom();
     console.log(zoom);
+    console.log(feature);
 
-    for (let index = 0; index < placeOfInterest.length; index++) {
+    for (let index = 0; index < feature.length; index++) {
         var result = [feature[index].properties.longitude,feature[index].properties.latitude]
         var points = turf.points([
             result
@@ -298,7 +299,7 @@ function highlight(feature) {
                 .setPopup(
                     new mapboxgl.Popup({ closeOnClick: true, closeButton: false }) // add popups
                         .setHTML(
-                            `<h3>${placeOfInterest[index].FeatureName}</h3><p>${placeOfInterest[index]["Sub Theme"]}</p>`
+                            `<h3>${feature[index].properties["Feature Name"]}</h3><p>${feature[index].properties["Sub Theme"]}</p>`
                         )
                 )
                 .addTo(map)
