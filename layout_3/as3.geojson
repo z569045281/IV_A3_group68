@@ -79,25 +79,25 @@
 {
     "type": "Feature",
     "properties": {
-      "x_coordinate": "144.9560032",
+      "x_coordinate": "145.0051544965706",
       "seating_type": "Seats - Indoor",
       "industry_anzsic4_description": "Cafes and Restaurants",
       "property_id": "105726",
       "industry_anzsic4_code": "4511",
-      "number_of_seats": "90",
+      "number_of_seats": "60",
       "census_year": "2019",
-      "y_coordinate": "-37.81345114",
+      "y_coordinate": "-37.81939392022459",
       "block_id": "72",
-      "street_address": "550 Lonsdale Street MELBOURNE 3000",
-      "clue_small_area": "Melbourne (CBD)",
+      "street_address": "4 Lord St, Richmond VIC 3121",
+      "clue_small_area": "Richmond",
       "base_property_id": "110707",
       "trading_name": "Jang Gun Restuarant"
     },
     "geometry": {
       "type": "Point",
       "coordinates": [
-        144.9560032,
-        -37.81345114
+        145.0051544965706,
+        -37.81939392022459
       ]
     }
   },
