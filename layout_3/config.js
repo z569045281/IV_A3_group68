@@ -172,16 +172,16 @@ var config = {
 
         {
             id: 'luna',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'Luna',
             image: 'https://travelintwos.com/wp-content/uploads/2019/08/photo0jpg.jpg',
             description: 'Copy these sections to add to your story.',
             location: {
-                center: [144.97999, -37.79605],
-                zoom: 18.91,
-                pitch: 46.50,
-                bearing: -73.20
+                center: [144.9803769880091,-37.79522817823646],
+                zoom: 15.59,
+                pitch: 54,
+                bearing: -15.80
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
@@ -223,14 +223,14 @@ var config = {
 
         {
             id: 'tigerous espresso',
-            alignment: 'left',
+            alignment: 'right',
             hidden: false,
             title: 'Tigerous Espresso',
             image: 'https://i2.wp.com/www.zestcoffee.com.au/app/uploads/2018/12/IMG-4124.JPG?fit=1000%2C1778&ssl=1',
             description: 'Copy these sections to add to your story.',
             location: {
                 center: [144.9582124,-37.81022002],
-                zoom: 20,
+                zoom: 19,
                 pitch: 36,
                 bearing: 27.20
             },
@@ -247,7 +247,12 @@ var config = {
                 opacity: 1
                 }
             ],
-            onChapterExit: []
+            onChapterExit: [
+                {
+                layer: 'CBD',
+                opacity: 0
+                }
+            ]
         },
 
         {
