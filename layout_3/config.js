@@ -65,8 +65,8 @@ var config = {
             image: '',
             description: 'Melbourne is a city that lives and breathes coffee – what started with the city \'s European migrant wave has now developed into a specialised field. And brunch – whether its a green matcha fuelled adventure, or a classic stack of pancakes – is almost a competitive sport in a city with AM dining of this calibre. We scoured Melbourne to bring you a guide to the best of the best.',
             location: {
-                center: [144.96305, -37.81433],
-                zoom: 15.52,
+                center: [144.96320, -37.81355],
+                zoom: 15.30,
                 pitch: 0,
                 bearing: -0.8
             },
@@ -107,8 +107,8 @@ var config = {
             image: '',
             description: 'Copy these sections to add to your story.',
             location: {
-                center: [144.96305, -37.81433],
-                zoom: 15.52,
+                center: [144.96320, -37.81355],
+                zoom: 15.30,
                 pitch: 0,
                 bearing: -0.8
             },
@@ -162,7 +162,12 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
+            onChapterEnter: [
+                {
+                layer: 'luna',
+                opacity: 1
+                }
+            ],
             onChapterExit: []
         },
 
