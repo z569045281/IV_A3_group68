@@ -100,12 +100,12 @@ var config = {
         },
 
         {
-            id: 'CBDheatmap',
-            alignment: 'left',
-            hidden: true,
-            title: '',
+            id: 'intro-CBDheatmap',
+            alignment: 'full',
+            hidden: false,
+            title: 'The heat map of cafe distribution in Melbourne CBD',
             image: '',
-            description: 'Copy these sections to add to your story.',
+            description: 'Source: Cafes and restaurants, with seating capacity ',
             location: {
                 center: [144.96320, -37.81355],
                 zoom: 15.30,
@@ -122,6 +122,26 @@ var config = {
                 opacity: .55
                 }
             ],
+            onChapterExit: []
+        },
+
+        {
+            id: 'CBDheatmap',
+            alignment: 'left',
+            hidden: true,
+            title: '',
+            image: '',
+            description: '',
+            location: {
+                center: [144.96320, -37.81355],
+                zoom: 15.30,
+                pitch: 0,
+                bearing: -0.8
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
             onChapterExit: [
                 {
                 layer: 'CBDheatmap',
