@@ -101,7 +101,7 @@ var config = {
 
         {
             id: 'intro-CBDheatmap',
-            alignment: 'full',
+            alignment: 'left',
             hidden: false,
             title: 'The heat map of cafe distribution in Melbourne CBD',
             image: '',
@@ -227,10 +227,10 @@ var config = {
             description: 'Stop in at Carlton for exactingly brewed cup of the Golden Gate espresso blend with notes of cocoa and toffee, or try a rotating single origin made with the method of your choice. The place is regularly busy and always humming with energy. It’s not uncommon to have to wait for a table. Melbourne University is only a block away so students often drop by while they kill time between classes.',
             address:'114 Berkeley St, Carlton VIC 3053',
             location: {
-                center: [144.95878, -37.80286],
-                zoom: 19.93,
-                pitch: 19,
-                bearing: 0
+                center: [144.95910, -37.80289],
+                zoom: 18.98,
+                pitch: 38,
+                bearing: 39.20
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
